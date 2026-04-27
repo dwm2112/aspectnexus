@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AspectNexus — Empowering Rural Communities Through STEM Education</title>
+  <meta name="description" content="AspectNexus is a non-profit organization dedicated to providing quality, accessible STEM education to rural communities in North Idaho and beyond." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      /* Core palette — dark tech foundation with green/teal life */
+      --color-bg:          #0b0f1a;
+      --color-surface:     #111827;
+      --color-surface-2:   #1a2235;
+      --color-surface-3:   #1e2d40;
+      --color-border:      #1f2d42;
+
+      /* Brand accents */
+      --color-primary:     #2dd4bf;   /* teal  */
+      --color-primary-dim: #0d9488;
+      --color-accent:      #34d399;   /* emerald */
+      --color-accent-warm: #fb923c;   /* orange — Idaho warmth */
+      --color-gold:        #fbbf24;
+
+      /* Text */
+      --color-text:        #e2e8f0;
+      --color-text-muted:  #94a3b8;
+      --color-text-dim:    #64748b;
+      --color-white:       #ffffff;
+
+      /* Typography */
+      --font-head:  'Space Grotesk', sans-serif;
+      --font-body:  'Inter', sans-serif;
+
+      /* Spacing & layout */
+      --container:  1200px;
+      --section-v:  100px;
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      /* Gradients */
+      --grad-hero: linear-gradient(135deg, #0b0f1a 0%, #0d1f33 50%, #0b1a2e 100%);
+      --grad-teal: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      --grad-card: linear-gradient(160deg, #1a2235, #111827);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── UTILITIES ────────────────────────────────────────────── */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .section { padding: var(--section-v) 0; }
+    .section--alt { background: var(--color-surface); }
+    .section--deep { background: var(--color-surface-2); }
+
+    .label {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-white);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    .section-header { margin-bottom: 60px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ─── NAVIGATION ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: rgba(11, 15, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--grad-teal);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 16px;
+      color: #0b0f1a;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-text span { color: var(--color-primary); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--color-white); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--grad-teal);
+      color: #0b0f1a;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(45,212,191,0.3); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1.5px solid var(--color-primary);
+    }
+    .btn-outline:hover { background: rgba(45,212,191,0.08); transform: translateY(-1px); }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--grad-hero);
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(45,212,191,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(52,211,153,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-primary);
+      background: rgba(45,212,191,0.08);
+      border: 1px solid rgba(45,212,191,0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--color-white);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .highlight {
+      background: var(--grad-teal);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card-stack {
+      position: relative;
+      width: 360px; height: 360px;
+    }
+
+    .hero-orb {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 40% 40%, rgba(45,212,191,0.15), transparent 60%);
+      border-radius: 50%;
+    }
+
+    .impact-float {
+      position: absolute;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .impact-float .icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .impact-float:nth-child(2) { top: 40px; left: 20px; animation: float1 4s ease-in-out infinite; }
+    .impact-float:nth-child(3) { top: 50%; right: 0; transform: translateY(-50%); animation: float2 5s ease-in-out infinite; }
+    .impact-float:nth-child(4) { bottom: 40px; left: 30px; animation: float3 4.5s ease-in-out infinite; }
+
+    @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes float2 { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% - 8px))} }
+    @keyframes float3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    .hero-stat {
+      text-align: center;
+      background: var(--color-surface-2);
+      border: 1px solid rgba(45,212,191,0.2);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 48px;
+    }
+
+    .hero-stat {
+      border-radius: 0;
+      border: none;
+      background: var(--color-surface);
+      padding: 24px 20px;
+    }
+
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-number span { color: var(--color-primary); }
+    .stat-label { font-size: 12px; color: var(--color-text-muted); font-weight: 500; }
+
+    /* ─── MISSION BAND ────────────────────────────────────────── */
+    .mission-band {
+      background: linear-gradient(90deg, rgba(45,212,191,0.08), rgba(52,211,153,0.04));
+      border-top: 1px solid rgba(45,212,191,0.15);
+      border-bottom: 1px solid rgba(45,212,191,0.15);
+      padding: 32px 0;
+    }
+
+    .mission-text {
+      font-family: var(--font-head);
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 500;
+      color: var(--color-white);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .mission-text em { color: var(--color-primary); font-style: normal; }
+
+    /* ─── ABOUT / MISSION ─────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-body p {
+      color: var(--color-text-muted);
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .about-body p:last-child { margin-bottom: 0; }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .pillar {
+      background: var(--grad-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .pillar:hover {
+      border-color: rgba(45,212,191,0.3);
+      transform: translateY(-2px);
+    }
+
+    .pillar-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .pillar-title {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── IMPACT AREAS ────────────────────────────────────────── */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .impact-card {
+      background: var(--grad-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .impact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .impact-card:nth-child(1)::before { background: var(--grad-teal); }
+    .impact-card:nth-child(2)::before { background: linear-gradient(90deg, var(--color-accent-warm), var(--color-gold)); }
+    .impact-card:nth-child(3)::before { background: linear-gradient(90deg, #818cf8, #a78bfa); }
+
+    .impact-card:hover {
+      border-color: rgba(45,212,191,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .impact-num {
+      font-family: var(--font-head);
+      font-size: 48px;
+      font-weight: 800;
+      color: rgba(45,212,191,0.12);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .impact-card:nth-child(2) .impact-num { color: rgba(251,146,60,0.12); }
+    .impact-card:nth-child(3) .impact-num { color: rgba(129,140,248,0.12); }
+
+    .impact-title {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 16px;
+    }
+
+    .impact-desc {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    /* ─── GOALS ───────────────────────────────────────────────── */
+    .goals-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .goals-sticky {
+      position: sticky;
+      top: 100px;
+    }
+
+    .goals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      counter-reset: goal-counter;
+    }
+
+    .goal-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--grad-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.2s;
+      counter-increment: goal-counter;
+    }
+
+    .goal-item:hover {
+      border-color: rgba(45,212,191,0.25);
+      transform: translateX(4px);
+    }
+
+    .goal-num {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-primary);
+      background: rgba(45,212,191,0.1);
+      border: 1px solid rgba(45,212,191,0.2);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .goal-text {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── VALUES ──────────────────────────────────────────────── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .value-card {
+      background: var(--grad-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .value-card:hover {
+      border-color: rgba(45,212,191,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .value-name {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 12px;
+    }
+
+    .value-scripture {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .value-ref {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 0.05em;
+    }
+
+    .value-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── MAKERSPACE ──────────────────────────────────────────── */
+    .maker-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .maker-visual {
+      background: var(--color-surface-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .maker-tile {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .maker-tile:hover {
+      border-color: rgba(45,212,191,0.3);
+      transform: scale(1.02);
+    }
+
+    .maker-tile-icon { font-size: 28px; margin-bottom: 8px; }
+    .maker-tile-label { font-size: 12px; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.05em; }
+
+    .maker-content .section-sub { max-width: 100%; }
+
+    .maker-points {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .maker-point {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .maker-point-dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(45,212,191,0.1);
+      border: 1.5px solid var(--color-primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .maker-point-dot::after {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+    }
+
+    .maker-point-text {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── VISION CALLOUT ──────────────────────────────────────── */
+    .vision-callout {
+      background: linear-gradient(135deg, #0d1f33, #0b1a2e);
+      border: 1px solid rgba(45,212,191,0.2);
+      border-radius: var(--radius-lg);
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-callout::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(45,212,191,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .vision-quote {
+      font-family: var(--font-head);
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.4;
+      max-width: 820px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vision-quote::before {
+      content: '\201C';
+      font-size: 80px;
+      color: rgba(45,212,191,0.2);
+      line-height: 0;
+      vertical-align: -0.3em;
+      margin-right: 4px;
+    }
+
+    .vision-source {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── CTA SECTION ─────────────────────────────────────────── */
+    .cta-section {
+      background: var(--grad-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -40%; right: -10%;
+      width: 500px; height: 400px;
+      background: radial-gradient(circle, rgba(52,211,153,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 17px;
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 60px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--color-text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--color-primary); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-border);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--color-text-dim);
+    }
+
+    .footer-bottom a { color: var(--color-primary); text-decoration: none; }
+
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--color-text-dim);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-cta { justify-content: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .about-grid { grid-template-columns: 1fr; }
+      .goals-layout { grid-template-columns: 1fr; }
+      .goals-sticky { position: static; }
+      .maker-feature { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-v: 64px; }
+      .nav-links { display: none; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .vision-callout, .cta-section { padding: 40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────────── -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-mark">AN</div>
+          <span class="nav-logo-text">Aspect<span>Nexus</span></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#goals">Goals</a></li>
+          <li><a href="#values">Values</a></li>
+          <li><a href="#makerspace">Makerspace</a></li>
+          <li><a href="#get-involved" class="btn btn-primary" style="padding:8px 18px;font-size:13px;">Get Involved</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ───────────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-badge">Non-profit · Coeur d'Alene, Idaho</div>
+          <h1 class="hero-title">
+            Empowering <span class="highlight">Rural Communities</span><br />
+            Through STEM Education
+          </h1>
+          <p class="hero-sub">
+            AspectNexus bridges the opportunity gap in rural communities by delivering hands-on STEM learning, mentorship, and makerspace resources — because every curious mind deserves a place to grow.
+          </p>
+          <div class="hero-cta">
+            <a href="#mission" class="btn btn-primary">Explore Our Mission</a>
+            <a href="#get-involved" class="btn btn-outline">Get Involved</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="stat-number">North<span> Idaho</span></div>
+              <div class="stat-label">Home Region</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-number">3<span>×</span></div>
+              <div class="stat-label">Impact Areas</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-number">501<span>(c)</span></div>
+              <div class="stat-label">Non-Profit Status</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-card-stack">
+            <div class="hero-orb"></div>
+            <div class="impact-float">
+              <div class="icon" style="background:rgba(45,212,191,0.1);">💡</div>
+              <span>Inspiring Innovation</span>
+            </div>
+            <div class="impact-float">
+              <div class="icon" style="background:rgba(52,211,153,0.1);">🔧</div>
+              <span>Makerspace Tools</span>
+            </div>
+            <div class="impact-float">
+              <div class="icon" style="background:rgba(251,146,60,0.1);">🎓</div>
+              <span>STEM Mentorship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MISSION BAND ────────────────────────────────────────────── -->
+  <div class="mission-band">
+    <div class="container">
+      <p class="mission-text">
+        <em>"Empowering Rural Communities Through STEM Education"</em><br />
+        <span style="font-size:0.75em;color:var(--color-text-dim);font-weight:400;">Coeur d'Alene, Idaho · Serving Rural North Idaho and Beyond</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── ABOUT / MISSION ─────────────────────────────────────────── -->
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="label">Our Mission</div>
+          <h2 class="section-title">Bridging the STEM Opportunity Gap in Rural America</h2>
+          <div class="about-body">
+            <p>
+              AspectNexus is a non-profit organization dedicated to providing accessible, quality STEM education to rural communities. Our mission is to empower individuals in rural areas to succeed in the 21st-century economy — regardless of their zip code.
+            </p>
+            <p>
+              We understand that rural communities face unique challenges: geographic isolation, limited institutional resources, and fewer pathways into technology and innovation. Our programs are designed to be flexible, community-rooted, and tailored to local needs.
+            </p>
+            <p>
+              We work in partnership with schools, educators, and community organizations to develop programs that actually address those needs — not a one-size-fits-all curriculum delivered from a distance.
+            </p>
+          </div>
+        </div>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🌱</div>
+            <div class="pillar-title">Hands-On Learning</div>
+            <div class="pillar-desc">Real tools, real projects, real skills that connect to student interests and futures.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤝</div>
+            <div class="pillar-title">Community First</div>
+            <div class="pillar-desc">Programs built alongside — not delivered to — the communities we serve.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🌍</div>
+            <div class="pillar-title">Diverse &amp; Inclusive</div>
+            <div class="pillar-desc">A safe, welcoming environment for learners of all backgrounds and experiences.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📈</div>
+            <div class="pillar-title">Economic Impact</div>
+            <div class="pillar-desc">STEM education that leads to real careers, startups, and economic opportunity in rural areas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IMPACT AREAS ────────────────────────────────────────────── -->
+  <section class="section section--alt" id="impact">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="label">Impact Areas</div>
+        <h2 class="section-title">Three Pillars of Transformation</h2>
+        <p class="section-sub">Foster in each student the full capacity, creativity, and confidence to become agents of change in their personal lives and in their community.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-num">01</div>
+          <h3 class="impact-title">Inspiration</h3>
+          <p class="impact-desc">Inviting students to participate in the creative economy and to take ownership of their own future. We plant seeds of curiosity that grow into careers, ventures, and community leadership.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">02</div>
+          <h3 class="impact-title">Innovation</h3>
+          <p class="impact-desc">Serving as a catalyst for grassroots invention. Our makerspaces and programs give rural students the tools to turn ideas into prototypes — and prototypes into reality.</p>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">03</div>
+          <h3 class="impact-title">Education</h3>
+          <p class="impact-desc">Building a living connection between the community and its learners. We link the practice of making to formal concepts, providing pathways for academic and career advancement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VISION ──────────────────────────────────────────────────── -->
+  <section class="section section--deep">
+    <div class="container">
+      <div class="vision-callout">
+        <div class="label">Our Vision</div>
+        <p class="vision-quote">
+          To be the favorite makerspace for North Idaho — drawing curious and creative people to a place of innovation, fellowship, and discovery.
+        </p>
+        <p class="vision-source">AspectNexus Vision Statement · Coeur d'Alene, Idaho</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GOALS ──────────────────────────────────────────────────── -->
+  <section class="section" id="goals">
+    <div class="container">
+      <div class="goals-layout">
+        <div class="goals-sticky">
+          <div class="label">Our Goals</div>
+          <h2 class="section-title">What We're Building</h2>
+          <p class="section-sub">
+            Our goals are grounded in research-backed education practice and shaped by the real needs of rural communities. They guide every program, partnership, and makerspace we create.
+          </p>
+        </div>
+        <div class="goals-list">
+          <div class="goal-item">
+            <div class="goal-num">1</div>
+            <p class="goal-text">Create the context that develops the <strong style="color:var(--color-text)">Maker mindset</strong> — a growth mindset that encourages every learner to believe they can learn to do anything.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">2</div>
+            <p class="goal-text">Identify, develop, and share a broad framework of <strong style="color:var(--color-text)">projects and kits</strong> based on a wide range of tools and materials that connect to student interests in and out of school.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">3</div>
+            <p class="goal-text">Build a new <strong style="color:var(--color-text)">body of practice in teaching making</strong> — and a corps of mentors and practitioners to follow it.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">4</div>
+            <p class="goal-text">Design and develop <strong style="color:var(--color-text)">Makerspaces</strong> across a variety of community contexts to serve diverse learners who don't share equal access to the same resources.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">5</div>
+            <p class="goal-text">Design and host <strong style="color:var(--color-text)">online platforms for collaboration</strong> among students, teachers, and the broader community.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">6</div>
+            <p class="goal-text">Develop programs especially for <strong style="color:var(--color-text)">young people</strong> that allow them to take a leading role in creating more Makers — and in shaping the community around them.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">7</div>
+            <p class="goal-text">Create <strong style="color:var(--color-text)">community contexts for exhibition and curation</strong> of student work, ensuring new opportunities are continuously created for more people to participate.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">8</div>
+            <p class="goal-text">Allow individuals to <strong style="color:var(--color-text)">build a record of participation</strong> in the Maker community — useful for academic and career advancement, and for personal growth.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">9</div>
+            <p class="goal-text">Develop <strong style="color:var(--color-text)">educational contexts</strong> that link the practice of making to formal concepts and theory, supporting exploration while introducing advanced design and new ways of thinking.</p>
+          </div>
+          <div class="goal-item">
+            <div class="goal-num">10</div>
+            <p class="goal-text">Foster in each student the <strong style="color:var(--color-text)">full capacity, creativity, and confidence</strong> to become agents of change in their personal lives and in their community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VALUES ──────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="values">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="label">Vision &amp; Values</div>
+        <h2 class="section-title">The Principles We Live By</h2>
+        <p class="section-sub">
+          Our values aren't a list on a wall — they're the foundation every program, decision, and relationship is built on.
+        </p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">❤️</div>
+          <div class="value-name">Love</div>
+          <p class="value-scripture">"We love because he first loved us."</p>
+          <div class="value-ref">1 John 4:19 ESV</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <div class="value-name">Truth</div>
+          <p class="value-scripture">"And you will know the truth, and the truth will set you free."</p>
+          <div class="value-ref">John 8:32 ESV</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📖</div>
+          <div class="value-name">Wisdom</div>
+          <p class="value-scripture">"For the Lord gives wisdom; from his mouth come knowledge and understanding."</p>
+          <div class="value-ref">Proverbs 2:6 ESV</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">✨</div>
+          <div class="value-name">Beauty</div>
+          <p class="value-scripture">"The imperishable beauty of a gentle and quiet spirit, which in God's sight is very precious."</p>
+          <div class="value-ref">1 Peter 3:4 ESV</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <div class="value-name">Courage</div>
+          <p class="value-scripture">"Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go."</p>
+          <div class="value-ref">Joshua 1:9 ESV</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚖️</div>
+          <div class="value-name">Integrity</div>
+          <p class="value-scripture">"Whoever walks in integrity walks securely, but he who makes his ways crooked will be found out."</p>
+          <div class="value-ref">Proverbs 10:9 ESV</div>
+        </div>
+        <div class="value-card" style="grid-column: span 1;">
+          <div class="value-icon">🌟</div>
+          <div class="value-name">Excellence</div>
+          <p class="value-scripture">"Whatever is true, whatever is honorable, whatever is just, whatever is pure, whatever is lovely, whatever is commendable — think about these things."</p>
+          <div class="value-ref">Philippians 4:8 ESV</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAKERSPACE ──────────────────────────────────────────────── -->
+  <section class="section section--deep" id="makerspace">
+    <div class="container">
+      <div class="maker-feature">
+        <div class="maker-visual">
+          <div class="maker-tile"><div class="maker-tile-icon">🖨️</div><div class="maker-tile-label">3D Printing</div></div>
+          <div class="maker-tile"><div class="maker-tile-icon">🤖</div><div class="maker-tile-label">Robotics</div></div>
+          <div class="maker-tile"><div class="maker-tile-icon">⚡</div><div class="maker-tile-label">Electronics</div></div>
+          <div class="maker-tile"><div class="maker-tile-icon">💻</div><div class="maker-tile-label">Coding</div></div>
+          <div class="maker-tile"><div class="maker-tile-icon">🔬</div><div class="maker-tile-label">Science Labs</div></div>
+          <div class="maker-tile"><div class="maker-tile-icon">🛠️</div><div class="maker-tile-label">Fabrication</div></div>
+        </div>
+        <div class="maker-content">
+          <div class="label">Makerspace</div>
+          <h2 class="section-title">A Space Where Ideas Become Real</h2>
+          <p class="section-sub">
+            Our makerspaces are more than rooms full of tools. They're collaborative environments designed to spark curiosity, accelerate learning, and connect students with the people and ideas that shape the future.
+          </p>
+          <div class="maker-points">
+            <div class="maker-point">
+              <div class="maker-point-dot"></div>
+              <p class="maker-point-text">Studio layouts that support individual initiative and autonomy, while encouraging cross-pollination of ideas across activity stations.</p>
+            </div>
+            <div class="maker-point">
+              <div class="maker-point-dot"></div>
+              <p class="maker-point-text">Past projects and current activities are visible and accessible — to seed ideas and provide inspiration for what's next.</p>
+            </div>
+            <div class="maker-point">
+              <div class="maker-point-dot"></div>
+              <p class="maker-point-text">Designed for diverse community contexts, serving learners who may not share equal access to the same institutional resources.</p>
+            </div>
+            <div class="maker-point">
+              <div class="maker-point-dot"></div>
+              <p class="maker-point-text">Community exhibitions that celebrate student work and invite more people into the making ecosystem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GET INVOLVED / CTA ──────────────────────────────────────── -->
+  <section class="section" id="get-involved">
+    <div class="container">
+      <div class="cta-section">
+        <div class="label">Get Involved</div>
+        <h2 class="cta-title">Join the AspectNexus Community</h2>
+        <p class="cta-sub">
+          Whether you're a student ready to build, an educator looking for resources, a volunteer who wants to make a difference, or a donor who believes in rural STEM — there's a place for you here.
+        </p>
+        <div class="cta-btns">
+          <a href="mailto:info@aspectnexus.blog" class="btn btn-primary">Contact Us</a>
+          <a href="https://www.aspectnexus.blog" class="btn btn-outline">Visit Our Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+            <div class="nav-logo-mark">AN</div>
+            <span class="nav-logo-text" style="font-size:18px;">Aspect<span>Nexus</span></span>
+          </a>
+          <p>A non-profit organization dedicated to accessible, quality STEM education for rural communities in North Idaho and beyond.</p>
+          <div class="location-badge" style="margin-top:14px;">
+            📍 Coeur d'Alene, Idaho
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Organization</h4>
+          <ul>
+            <li><a href="#mission">Our Mission</a></li>
+            <li><a href="#impact">Impact Areas</a></li>
+            <li><a href="#goals">Our Goals</a></li>
+            <li><a href="#values">Vision &amp; Values</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#makerspace">Makerspace</a></li>
+            <li><a href="#makerspace">STEM Curriculum</a></li>
+            <li><a href="#makerspace">Robotics</a></li>
+            <li><a href="#makerspace">Mentorship</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.aspectnexus.blog">Blog</a></li>
+            <li><a href="#get-involved">Volunteer</a></li>
+            <li><a href="#get-involved">Donate</a></li>
+            <li><a href="mailto:info@aspectnexus.blog">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AspectNexus. All rights reserved. A registered 501(c)(3) non-profit organization.</p>
+        <p>Built with ❤️ in <a href="#">North Idaho</a></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
